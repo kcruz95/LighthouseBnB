@@ -44,7 +44,7 @@ CREATE TABLE properties (
   -- title VARCHAR(255) NOT NULL,
   -- description TEXT NOT NULL,
   -- thumbnail_photo_url VARCHAR(255) NOT NULL,
-  -- conver_photo_url VARCHAR(255) NOT NULL,
+  -- cover_photo_url VARCHAR(255) NOT NULL,
   -- cost_per_night INTEGER NOT NULL,
   -- parking_spaces INTEGER NOT NULL,
   -- number_of_bathrooms INTEGER NOT NULL,
