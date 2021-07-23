@@ -144,8 +144,44 @@ exports.getAllReservations = getAllReservations;
  * @return {Promise<[{}]>}  A promise to the properties.
  */
  const getAllProperties = (options, limit = 10) => {
-  return pool
-    .query(`SELECT * FROM properties LIMIT $1`, [limit])
+  //  1 setup an array for possible parameters for the query
+  const queryParams = [];
+
+  //  2 form a query with all the clauses BEFORE "WHERE"
+  let queryString = `
+  SELECT properties.*, avg(property_reviews.rating) as average_rating
+  FROM properties
+  JOIN property_reviews ON properties.id = property_id
+  `;
+
+  //  3  check if a city, owner_id or price_per_night has been inputted
+  if (options.city) {
+    queryParams.push(`%${options.city}%`);
+    queryString += `WHERE city LIKE $${queryParams.length} `;
+  }
+
+  if (options.owner_id) {
+    queryParams.push(options.owner_id);
+    queryString += `AND owner_id = $${queryParams.length}`;
+  }
+
+  if (options.minimum_price_per_night) {
+    queryParams.push(`${options.minimum_price_per_night}`);
+    queryString += `AND cost_per_night > $${queryParams.length}`;
+  }
+
+  if (options.maximum_price_per_night) {
+    queryParams.push(`${options.maximum_price_per_night}`);
+    queryString += `AND cost_per_night < $${queryParams.length}`;
+  }
+  
+  //  4  add a query AFTER "WHERE"
+  queryString += `
+  GROUP BY properties.id
+  `;
+  //  5  console.log everything
+  //  6  run the query
+  return pool.query(`SELECT * FROM properties LIMIT $1`, [limit])
     .then((result) => {
       console.log(result.rows);
     })

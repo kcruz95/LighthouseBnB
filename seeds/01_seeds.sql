@@ -14,7 +14,7 @@ INSERT INTO properties (owner_id, title, description, thumbnail_photo_url, cover
 VALUES (1, 'Posto 6', 'description', 'thumbnailPhoto', 'coverPhoto', 320, 1, 2, 3, 'Brazil', 'RJ', 'Rio de Janeiro', 'Rua Sa Ferreira'),
 (2, 'Baires', 'description', 'thumbnailPhoto', 'coverPhoto', 270, 0, 2, 2, 'Argentina', 'Buenos Aires', 'Buenos Aires', 'Calle Defensa'),
 (3, 'Village', 'description', 'thumbnailPhoto', 'coverPhoto', 420, 1, 3, 3, 'Canada', 'Quebec', 'Montreal', 'Cartier Street'),
-(4, 'Dachiao', 'description', 'thumbnailPhoto', 'coverPhoto', 115, 0, 2, 3, 'Taiwan', 'Taiwan', 'Taipei', 'Taishun Street'),
+(4, 'Chimei', 'description', 'thumbnailPhoto', 'coverPhoto', 115, 0, 2, 3, 'Taiwan', 'Taiwan', 'Taipei', 'Taishun Street'),
 
 INSERT INTO property_reviews (guest_id, property_id, reservation_id,rating, message)
 VALUES (1, 1, 1, 3,'msg1'),
